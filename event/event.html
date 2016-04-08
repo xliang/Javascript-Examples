@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	</head>
+	<body>
+
+<!-- 
+JavaScript Event Handling 
+
+Event Bubbling 
+- Start at most specific element, and then flow upward toward lest specific elemennt 
+
+
+Event Capturing 
+- The lest specific node receive the event first, 
+the most specific node receive the event last. 
+
+Event Handling 
+- a function called in reponse an event is call event handler 
+- Event Handler begin with "on" 
+
+// DOM level 0 method 
+var btn = document.getElementById("myBtn"); 
+btn.onclick = function () {
+	alert (this.id); // to use this to access any of the elements's property or mehthods
+	form within the event handler
+}
+
+// Remove event 
+
+bt.onclick = null 
+
+// DOM Level 2 Event Handling 
+
+var btn = document.getElementById("myBtn"); 
+btn.addEventListener("click", function () {
+	alert(this.id); 
+}, false);
+
+The major advantage ot use DOM 1 Level 2 method is that multiple event handler can be added. 
+
+removelistener 
+- can remove the event by addEventListener, but need to have some arguments. 
+- anonymous function cannot be treatied as same arugment
+
+DOM Event Flow
+The event flow specified by DOM Level 2 Events has three phases: 
+1. The event capturing
+2. at the target
+3. the event bubbling 
+
+First, a function is created that wraps
+the attribute value. That function has a special local variable called event, which is the event object 
+
+<!-- outputs “click” -->
+<input type="button" value="Click Me" onclick="alert(event.type)">
+
+The this value inside of the function is equivalent to the event’s target element, for example:
+
+<!-- outputs “Click Me” -->
+<input type="button" value="Click Me" onclick="alert(this.value)">
+
+<!-- 
+     function () {
+		with (document) {
+			with(this) {
+				attributes here ... 
+			}
+		}
+     }		   
+-->
+
+<!-- event handler can access its property easily --> 
+<input type="button" value="Click Me" onclick="alert(value)">
+
+<!-- 
+     function () {
+		with (document) {
+			with(this.form) {
+				with (this) {
+					attributes here ... 
+				}
+			}
+		}
+     }
+
+     if the element is form's input element, The scope chain also contains a entry for all of
+     the parent form elements.		   
+-->
+<form method="post">
+	<input type="text" name="username" value="">
+	<input type="button" name = "Echo Username" onclick="alert(usernam.value)">
+</form>
+
+
+
+</body>
+
+
+</html>

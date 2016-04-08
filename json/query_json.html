@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery.grep demo</title>
+<style>
+	div {
+		color: blue;
+	}
+	p {
+		color: green;
+		margin: 0;
+	}
+
+	span {
+		color: red;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<div></div>
+<p></p>
+<span></span>
+<script>
+	var arr = [ 1, 9, 3, 8, 6, 1, 5, 9, 4, 7, 3, 8, 6, 9, 1 ];
+	
+	$( "div" ).text( arr.join( ", " ) );
+	
+	arr = jQuery.grep(arr, function( n, i ) {
+		return ( n !== 5 && i > 4 );
+	});
+	
+	$( "p" ).text( arr.join( ", " ) );
+		arr = jQuery.grep(arr, function( a ) {
+		return a !== 9;
+	});
+
+	$( "span" ).text( arr.join( ", " ) );
+
+	var myArray = [{'id':'73','foo':'bar'},{'id':'45','foo':'bar'}]
+	var id = 45;
+	var result = jQuery.grep(myArray, function(e){ 
+			return e.id == id; 
+	});
+
+	if (result.length == 0) {
+	  // not found
+	} else if (result.length == 1) {
+	  // access the foo property using result[0].foo
+	  	console.log(result[0].foo); 
+
+	} else {
+	  console.log(result); 
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery.grep demo</title>
+<style>
+	div {
+		color: blue;
+	}
+	p {
+		color: green;
+		margin: 0;
+	}
+
+	span {
+		color: red;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<div></div>
+<p></p>
+<span></span>
+<script>
+	var people = [
+	{
+		"title": "Mr.",
+		"firstName": "John",
+		"lastName" : "Doe"
+	},
+	{
+		"title": "Mrs",
+		"firstName": "Jane",
+		"lastName": "Doe"
+	},
+	{
+		"title": "Sir",
+		"firstName": "Johnthan",
+		"lastName": "Williams"
+	},
+	{
+		"title": "Sir",
+		"firstName": "Edward",
+		"lastName": "Tailor"
+	}
+	]; 
+
+	function searchObjects(obj, key, val) {
+    var objects = [];
+    for (var i in obj) {
+        if (typeof obj[i] == 'object') {
+            objects = objects.concat(searchObjects(obj[i], key, val));
+        } else if (i == key && obj[key] == val) {
+            objects.push(obj);
+        }
+    }
+    return objects;
+}
+
+	var results = searchObjects(people, "title", "Sir"); 
+
+	console.log(results); 
+
+	var parsedResults = jquery.parseJSON(people); 
+
+	console.log(parsedResults); 
+</script>
+</body>
+</html>

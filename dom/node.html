@@ -1,0 +1,59 @@
+<!-- 
+	Node: 
+
+	- Several different Node Type
+    - Each represent different information and/or markup in the document.  
+    - Node 
+      -> Type
+      -> nodeName
+      -> nodeValue
+        ex
+	      -> html 
+	      	 Type: element 
+	         nodeName: html (always tag name)
+	         nodeValue: null (always null)
+	  -> childNodes
+	  -> parentNode
+	  -> previousSibling
+	  -> nextSibling
+	  -> firstChild
+	  -> lastChild
+	  Methods: 
+	  -> appendChild() add to the end 
+	  -> insertBefore (01, 02)  the node to insert and a reference node
+	  -> replaceChild
+	  -> removeChild
+	  -> cloneNode (true or false)
+
+	  Document Type 
+	  -> var html = document.documentElements 
+	  -> var body = document.body
+	  -> var title = document.title
+	  -> var url = document.URL
+	  -> var domain = document.domain
+	     domain property can be set, which can be used to solve corss domain security issue
+	  -> var referer = document.referer
+	  -> getElementById
+	      - retrun first 
+	  -> getElementByTagName 
+	      - return a list (HTMLCollection) [NodeList] as well
+	      -> namedItem(), reference the item in HTMLCollection with name attribute
+
+	  Element Type 
+	  -> nodeType: 1
+	  -> nodeName: element's tag name
+	  -> nodeValue: is null 
+	  -> tagName, same as nodeName
+	  - sample: 
+	  -> <div id=”myDiv” class=”bd” title=”Body text” lang=”en” dir=”ltr”></div>
+      -> getAttribute() 
+      -> setAttribute() 
+      -> removeAttribute()
+--> 
+
+<html>
+	<header>Sample Page</header>
+	<body>
+		<p>Hello World</p>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>  
+<html>  
+  <head>  
+    <title>Bootstrap V3 template</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <!-- Bootstrap -->  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script>
+        /*
+          When an event related to the DOM is fired, all of the information is stored on a object called event
+          - the element cause the element
+          - event type
+        */
+
+        var btn = document.getElementById("myBtn"); 
+        btn.onclick = function (event) {
+          alert(event.type); // return click 
+        }; 
+
+        btn.addEventListener("click", function(event) {
+          alert (event.type); 
+        }, false); 
+
+        /* 
+          preventDefault() is to prevent the default action of an event
+
+        */
+        var link = document.getElementById("myLink"); 
+        link.onclick = function (event) {
+          // prevent the default action, navigation 
+          event.preventDefault(); 
+
+          alert(event.cancelable === true); 
+        
+        }
+    </script>
+  </head>  
+  <body>  
+    <h1>Event Object</h1>  
+
+    <!-- Add Code Here -->
+
+    <input type="button" id = "myBtn" value="Click Me">
+
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
+    <script>
+        $(document).ready(function() {
+            console.log("hello world - 1"); 
+        });
+    </script>
+
+  </body>  
+</html>  

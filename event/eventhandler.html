@@ -1,0 +1,56 @@
+<!DOCTYPE html>  
+<html>  
+  <head>  
+    <title>Event Handler</title>  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <!-- Bootstrap -->  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <script>
+
+      // DOM Level 0 Event Handling 
+      var btn = document.getElementById("myBtn"); 
+      btn.onclick = funciton () {
+          // this the element 
+          alert(this.value); 
+      }
+    
+      // DOM level 2 Event Handling
+      // three arguments 
+      // event name to handler, event handler function, and indicator of whether to handling the event 
+      // in bubble or capture 
+      // true: in capture phase
+      // false: in bubble phase
+      
+      // The advantage of Level 2 event handling is it can handle mutliple events. 
+
+      // In most of time, the event handled in the bubbling phase 
+      var btn2 = document.getElementById("myBtn"); 
+      btn.addEventListener("click", function() {
+        alert (this.value); 
+      }, false); 
+
+      
+
+
+    </script>
+  </head>  
+  <body>  
+    <h1>Event Handler</h1>  
+
+    <!-- Add Code Here -->
+
+    <input type="button" id = "myBtn" value="Click Me">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
+    <script>
+        $(document).ready(function() {
+            console.log("hello world - 1"); 
+        });
+    </script>
+
+  </body>  
+</html>  

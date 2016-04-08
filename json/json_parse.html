@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery.grep demo</title>
+<style>
+	div {
+		color: blue;
+	}
+	p {
+		color: green;
+		margin: 0;
+	}
+
+	span {
+		color: red;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<div></div>
+<p></p>
+<span></span>
+<script>
+	var result_1 = '[{"Lang":"jQuery","ID":"1"},{"Lang":"C#","ID":"2"}]';
+
+    var obj = jQuery.parseJSON(result_1);
+	
+	$.each(obj, function() {
+
+	      console.log(this['Lang']);
+	});
+
+	var result_2 = [{"Lang":"jQuery","ID":"1"},{"Lang":"C#","ID":"2"}];
+	var obj_2 = jQuery.parseJSON(result_1);
+
+	console.log(obj_2); 
+	
+</script>
+</body>
+</html>
+
