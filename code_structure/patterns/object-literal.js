@@ -14,6 +14,10 @@
     Uses the Object Literal syntax to define your properties and methods that some may find cumbersome
     There isn’t the ability to have private properties or methods
 
+    It doesn't offer any privacy for properties or methods, but it is useful for 
+    eliminating anonymous functions from your code, centralizing configuration options, and 
+    easing the path to reuse and refactoring.
+    
 */
 
 var skillet = { 

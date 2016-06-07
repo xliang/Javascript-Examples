@@ -1,7 +1,9 @@
 /*
-	JavaScript module pattern vs Constructor with methods defined in constructor
+	JavaScript module pattern vs Constructor 
+    with methods defined in constructor
 
-    module pattern is typically used for namespacing, where have a a single instance acting 
+    Module pattern is typically used for namespacing, 
+    where have a a single instance acting 
     as a store to group related functions and objects. 
 */
 
@@ -50,11 +52,14 @@ my_module2.something();
 
 /*
 	To me the end result is pretty much the same. 
-	Both can have public properties and methods, both can have "private" variables and methods which can be accessed by the public methods.
+	Both can have public properties and methods, 
+    both can have "private" variables and methods 
+    which can be accessed by the public methods.
 
 	!!!
 
-	In the first example, foo will be a static variable common to all instances of module(). Meaning, all instances will reference the same variable.
+	In the first example, foo will be a static variable common to all instances of module().
+    Meaning, all instances will reference the same variable.
 
 	In the second example, foo is different for each Module() instance.
 

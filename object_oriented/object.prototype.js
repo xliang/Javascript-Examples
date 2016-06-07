@@ -1,74 +1,39 @@
 /*
      Class-based vs. Prototype-based
 
-     Class-based:     defines what it should look like (blue print)
-     Prototype-based: create what it should look like  (the object itself)
+     Class-based:     defines conceptually what it should look like (blue print)
+                      
+
+     Prototype-based: create concretely what it should look like  (the object itself)
                       JS's use of the new operator is a departure from its protoype-based roots. 
                       perhaps as an attempt to make it more comprehensible to developers familiar 
                       with class-based inheritance. 
 
-                      Alternative to new, Object.Create is created
-
-*/
-
-/*
-// reference: 
-// Code Project http://www.codeproject.com/Articles/687093/Understanding-JavaScript-Object-Creation-Patterns
-// [LW]: One of the best article to explain pototye, constructor, object inheritance, relationship.
-
-Difference between Prototype and __proto__ in Javascript 
-http://geekabyte.blogspot.ca/2013/03/difference-between-protoype-and-proto.html
-
-Understanding Constructor Function and this Keyword in Javascript
-http://geekabyte.blogspot.nl/2013/03/understanding-constructor-function-and.html
-
-Stack Overflow 
-
-Setting Prototype for Object Literal
-http://stackoverflow.com/questions/15472005/setting-prototype-for-object-literal
-
-Adding Prototype to JavaScript Object Literal 
-http://stackoverflow.com/questions/1592384/adding-prototype-to-javascript-object-literal
-
-__proto__ Vs. Prototype in javaScript
-http://stackoverflow.com/questions/9959727/proto-vs-prototype-in-javascript
+                      * new
+                      * Object.Create
 
 
-The Ultimate Gude to Object Oriented Basics Of javaScript
-http://www.1stwebdesigner.com/object-oriented-basics-javascript/
+    Thus, a class-based OO language has a dual nature that requires at least two fundamental constructs: 
+    classes and objects. 
+    
+    As a result of this duality, as class-based software grows, complex class hierarchies tend to develop. 
+    It's generally impossible to predict all the ways classes will need to be used in the future, 
+    so the class hierarchy needs to be constantly refactored to facilitate changes.
 
-Object Oriented JavaScript Pattern Comparison 
-http://john-dugan.com/object-oriented-javascript-pattern-comparison/?PageSpeed=noscript
+    Prototype-based languages eliminate the need for the above-mentioned duality and 
+    facilitate the direct creation and manipulation of objects. 
+    Without objects being bound by class, more loosely bound systems of objects 
+    can be created that help to maintain modularity and reduce the need for refactoring. 
 
-OOP in javascript: What you Need to Know
-http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/
-
-Javascript Object in Detail
-http://javascriptissexy.com/javascript-objects-in-detail/
-
-The Secret of Life Of JavaScript
-http://eloquentjavascript.net/06_object.html
-
-Understanding Design Patterns in JavaScript
-http://code.tutsplus.com/tutorials/understanding-design-patterns-in-javascript--net-25930
-
-Details of Object Model
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model
-
-
-
-
-*/
-
-
-// javascript does not have class, it relys on constructor and prototype 
-// to bring similar order to a object. 
-
-/*
  -- prototype 
 
     the prototype relationships of JavaScript objects from a tree-shaped structure, and at the root of 
     this structure sits Object.protptype
+    
+    All javascript objects inherit the properties and methods from their prototype 
+    Object created using object literal, or with new Object(), inherit from a prototype called Object.prototype. 
+    Object created with new Date, inherit the Date.prototype
+    Object.prototype is top of the prototype chain. 
 
     Many objects don’t directly have Object.prototype as their prototype, but instead have another object, 
     which provides its own default properties. 
@@ -83,14 +48,19 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Obj
     to [[prototype]] property. 
 
     !!! once the constructor is called !!!
+    
+    ** 
+    prototype property is an object containing properties and
+    methods that should be available to instances of a particular reference type
+    ** 
+    
+    prototype objec is different from constructor, the method and properties in the prototype object, 
+    isn't as same as Constructor's
 
     The benefit of using the prototype is that all of its properties and methods
     are shared among object instances. Instead of assigning object information
     in the constructor, they can be assigned directly to the prototype, as in this example
-
-    prototype property is an object containing properties and
-    methods that should be available to instances of a particular reference type
-
+    
     In prototype-based system, we create an object that looks like, 
     and tell javascript engine that we want more objects look like that. 
 
@@ -112,11 +82,90 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Obj
      which by default holds a plain, empty object that derives from Object.prototype. 
      Every instance created with this constructor will have this object as its prototype.
 
+    Since constructor is not really a class, it’s important to understand what a call to a constructor does. 
+
+    1. It first creates an empty object, 
+    2. then sets the prototype of this object to the prototype property of the constructor, 
+    3. then calls the constructor function with this pointing to the newly-created object, 
+    4. and finally returns the object. 
+
+    Any function is called with new operator acts as a constructor, whereas any function 
+    called without it acts just as a normal function. 
+
+    It is possible to define custom constructors that define properties and methods 
+    for your own type of objects. 
+
+    function used by new is treatied as constructor
+    Constructor function is just regular funciton, only the new does the magic
+
+    what exactly does the new keyword do? When a function is invoked using new,
+    the following occurs:
+
+    1. A new instance of an object is created and its prototype
+       (exposed via the __proto__ property) 
+       is set to the prototype property of the constructor function.
+    2. The constructor function is invoked 
+        with the newly created object bound to the this property.
+    3. If the function does not return a value, "this" is returned implicitly.
+    
+    function Shape(color, borderThickness) { 
+        this.color = color;
+        this.borderThickness = borderThickness;
+    }
+
+    Shape.prototype.describe = function() {
+        console.log("I am a " + this.color + " shape, with a border that is " +
+            this.borderThickness + " thick");
+    }; 
+
+    var notAShape = Shape('red', 2.0); 
+    -> undefined. 
+
+
+ !! Because the Shape constructor function lacks an explicit return !!
+
+ the function doesn't return anything and the notAShape variable is undefined.
+
+     Well, that's easily fixed:
+
+    function Shape(color, borderThickness) { 
+            this.color = color;
+            this.borderThickness = borderThickness;
+            return this;
+    } 
+
+    constructor functions must be invoked via the new keyword or Bad Things will happen.
+    if "new" is omitted, the object returned is not "Shape", instead, it is window object 
+
+    The issue of constructor:
+
+    This fragility, where a developer can easily forget to use the new keyword, 
+    is of concern to JavaScript developers, which is why convention dictates that constructor functions 
+    should start with capital letters as a reminder of their purpose.
+
+    Constructor Method vs Instance Method 
+    
+    a. Properties are bound to the object instance from prototype 
+    b. Properties are added to the object instance with Constructor function 
+
+    Binding operations within the constructor always take precedence over those in the prototype. 
+
+    The point is that property references are resolved in the object first, defaulting to
+    inspecting the prototype only if that fails.
+
+    
+    The take-home message from this section is that constructor functions are just regular functions. 
+    There is nothing special about them. It is the new keyword that does all the magic. 
+
+    0. it makes it easy to create multiple objects with the same properties and methods. 
+    1. By convention, constructor functions always begin with a uppercase letter
+    2. constructor use "this"
+    3. no return statement
+    4. no object being created explicitly. 
+    5. the properties and methods are assigned directly onto this object. 
+    6. There is no return statement
 
 */
-
-
-
  
 // In class-based system, we define blueprints.  
 
@@ -129,12 +178,32 @@ function Shape(color, borderThickness) {
 
 var shape = new Shape('red', 2); 
 
+// the first thing "new" keyword does is construct an object 
+// with its internal prototype set to the prototype of constructor function 
+
+/*
+
+A new instance of an object is created and its prototype (exposed via the __proto__ property)
+is set to the prototype of the constructor function.
+
+The problem here is that there are two different prototype being discussed. On eis the 'real'
+prototype, the one that determine the type of an object, the other is simply the prototype property 
+of the constructor function. These are two very different things that unfortunately share the same 
+name. Personally, it would be a lot less confusing if the prototype property were called something 
+like 'constructedObjectsPrototype'. Verbose, but much more clear. 
+
+*/
+
+// Shape.prototype is an object (not a function) created in memory when new is called 
+// onto the constructor
+
 if (shape.__proto__ == Shape.prototype)
 {
     console.log("shape.__proto__ == Shape.prototype");
 }
 
 if (shape.__proto__.__proto__ == Object.prototype){
+
     console.log("shape.__proto__.__proto__ == Object.prototype"); 
 }
 

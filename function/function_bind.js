@@ -1,3 +1,10 @@
+/*
+	bind, func.bind(thisValue, arg1, ..., argN)
+
+	performs partial function application, a new function is created
+	that calls func with thisValue and following arguments, arg1, ... argN
+*/
+
 // 'use strict'
 var jane = {
 	name : 'jane',

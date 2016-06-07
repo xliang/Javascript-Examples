@@ -20,7 +20,7 @@ CalModule = (function(){
 
 })(); 
 
-var result = CalModule.add(5, 2); 
+var result = CalModule.add(5, 2); // no new constructor 
 console.log(result); 
 
 // private member inside a module were created using closure. 

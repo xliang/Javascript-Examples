@@ -1,7 +1,8 @@
 //The module pattern overcomes some of the limitations of the object literal, 
 // offering privacy for variables and functions while exposing a public API if desired.
 
-// it is a anonymous function, execute immediately. All of the code run inside of the function 
+// it is a anonymous function, execute immediately. 
+// All of the code run inside of the function 
 // lives in a closure, which provides privacy and state throughout the life time of the application. 
 
 

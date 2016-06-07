@@ -1,22 +1,10 @@
 /*
-    MDN: 
-    
-    A closure is a special kind of object that combines two things: 
+    ==== Definiation (What is Closure) ====
+
+    (MDN) A closure is a special kind of object that combines two things: 
     a function, and the environment in which that function was created. 
     The environment consists of any local variables that were in-scope at the time 
     that the closure was created.
-
-    A closure can be very helpful when needing to enclose certain variables 
-    to a particular scope or when we need to maintain state inside an object. 
-    We will examine a common code scenario 
-    and examine what is going on and how we might be able to fix it using a closure.
-
-    a closure can be very helpful when trying to persist certain variable states. 
-    There are actually several other really good uses for closures as well. 
-    A pattern that I use frequently is called the Revealing Module Pattern, 
-    which uses the concept of closures to simulate private methods and properties 
-    as you might expect from C#.
-
 
     As programs run, they take up and use the computer’s memory for all sorts of
     things, such as storing the values of variables. 
@@ -25,16 +13,139 @@
     would be to remove everything that was created inside of that function from memory.
     After all, the function is finished executing, so it would seem that we don’t need access
     to anything inside of that execution context anymore.
-
     
+    We must remember that a unique execution context object is created every time a
+    function is called. After the function completes, the execution object is immediately
+    discarded unless the caller retains a reference to it. If a function returns a number, you
+    can’t  typically  retain  a  reference  to  a  function’s  execution  context  object.  On  the
+    other hand, if a function returns a more complex structure like a function, an object,
+    or  an  array,  creating  a  reference  to  the  execution  context  is  often  accomplished—
+    sometimes mistakenly—by storing the return value to a variable.
+
     Now, finally, we can answer the question “What is a closure?” A closure is the process 
     of preventing the garbage collector from removing a variable from memory by
     keeping access to the variable outside the execution context in which it was created.
 
+    
+    ==== Where Closure Applys === 
 
-    The closure is created by saving a function, with dynamic access to the prisoner variable, outside of the current execution context, which prevents the garbage collector from
+    A closure can be very helpful when needing to enclose certain variables 
+    to a particular scope or when we need to maintain state inside an object. 
+    We will examine a common code scenario and examine what is going on and 
+    how we might be able to fix it using a closure.
+
+    A closure can be very helpful when trying to persist certain variable states (private variable).
+
+    There are actually several other really good uses for closures as well. 
+    A pattern that I use frequently is called the Revealing Module Pattern, 
+    which uses the concept of closures to simulate private methods and properties 
+    as you might expect from C#.
+
+    ==== How to create a Closure ====
+
+    The closure is created by saving a function, with dynamic access to the prisoner variable, 
+    outside of the current execution context, which prevents the garbage collector from
     removing the prisoner variable from memory.
+    
+    * A closure is a function plus the connection to the variables of its surrounding scope. 
 
+    * When a function has nested function inside of it, the nested function has access to 
+    the vars and parameters of the outer function and a "closure" is created behind the scense. 
+
+    * A closure is an inner function that has access to the outer (enclosing) funciton's variables - scope chain
+
+    * A closure is created that encompasses a function declaration, but also ALL varialbes that 
+      are currently in same scope (including before and after) at the point of declaration. 
+      It creates a safety bubble. 
+
+    *  Succinctly put, a closure is the scope created when a function is declared that allows the
+       function to access and manipulate variables that are external to that function. 
+
+    *  Put another way, closures allow a function to access all the variables, as well as other functions, 
+       that are in scope when the function itself is declared.
+
+    *  A closure lets you associate some data (the environment) with 
+       a function that operates on that data. This has obvious parallel to 
+       object oriented programming, where objects allow us to associate some 
+       data with one or more methods.
+     
+    *  We can use closure anywhere that you might normally use an object with only a single method.    
+     
+    * Situations where you might want to do this are particularly common on the web. 
+      Much of the code we write in web JavaScript is event-based — we define some behavior, 
+      then attach it to an event that is triggered by the user (such as a click or a keypress). 
+      Our code is generally attached as a callback: a single function 
+      which is executed in response to the event.
+*/
+
+/*   Example of an simple Closure  */
+var prison = (function () {
+    var prisoner_name = 'Mike'; 
+    var jail_term = '20 years term'; 
+
+    // instead of adding the variabless to the global scope
+    // only the varialbe prison is added. 
+    // it reduces in global variables
+    return {
+        prisoner : prisoner_name + ' - ' + jail_term,
+        sentence: jail_term 
+    }; 
+})();
+
+// output : undefined
+// cannot access private variable
+console.log(prison.prisoner_name); 
+
+console.log(prison.prisoner); 
+console.log(prison.sentence); 
+
+// try to access the private property
+// but just create new attribute,
+prison.jail_term = 'free'; 
+console.log(prison.jail_term); 
+console.log(prison.sentence); 
+
+// prisoner_name and jail_term aren't properties
+// of the object saved to the variable prison, 
+// so they cannot be accessed this way. 
+// They are variables used to define the 
+// attributes prisoner and sentence on the object 
+// returned from anonymous function, and those attributes 
+// can be accessed on the prison variable. 
+
+// 1. jail_term isn't an attribute on the prison object or prtotype; 
+// it was a variable in the execution context that created the object
+// and saved to the prison variable, and that execution context no longer exists
+// because the function finished executing already. 
+
+// 2. these attributes are set one time when the anonymous function is executed 
+// and never updated. To make them update, we have to turn the attributes into methods that 
+// access the variable every time they're invoked. 
+
+
+var prison2 = (function () {
+    var prisoner_name = 'Mike'; 
+    var jail_term = '20 years term'; 
+
+    
+    return {
+        prisoner :  function () {
+            return prisoner_name + ' - ' + jail_term;
+        },
+        setJailTerm : function ( term ) {
+            jail_term = term;   
+        }
+        
+    }; 
+})();
+
+console.log(prison2.prisoner()); 
+
+prison2.setJailTerm('Sentence commuted'); 
+// jail term is updated. 
+console.log(prison2.prisoner()); 
+
+/*
     Another common use of closures is to save variables for use when an Ajax call returns.
     When using methods in a JavaScript object, this refers to the object:
 
@@ -72,45 +183,13 @@
 
 */
 
-// A closure is a function plus the connection to the variables of its surrounding scope. 
 
-// when a function has nested function inside of it, the nested function has access to 
-// the vars and parameters of the outer function and a "closure" is created behind the scense. 
 
-// A closure is an inner function that has access to the outer (enclosing) funciton's variables - scope chain
 
-// A closure is created that encompasses a function declaration, but also ALL varialbes that 
-// are currently in same scope (including before and after) at the point of declaration. 
-// It creates a safety bubble. 
-
-// Succinctly put, a closure is the scope created when a function is declared that allows the
-// function to access and manipulate variables that are external to that function. 
-
-// Put another way, closures allow a function to access all the variables, as well as other functions, 
-// that are in scope when the function itself is declared.
-
-// A closure lets you associate some data (the environment) with 
-// a function that operates on that data. This has obvious parallel to 
-// object oriented programming, where objects allow us to associate some 
-// data with one or more methods.
-// 
-// We can use closure anywhere that you might normally use an object with
-// only a single method.
-// 
-// Situations where you might want to do this are particularly common on the web. 
-// Much of the code we write in web JavaScript is event-based — we define some behavior, 
-// then attach it to an event that is triggered by the user (such as a click or a keypress). 
-// Our code is generally attached as a callback: a single function 
-// which is executed in response to the event.
 
 // there have three ways to create closures
 
-/*
 
-
-*/
-
-// Put closure to work 
 
 // 1. private variable, Javascript has 
 
@@ -223,13 +302,7 @@ var prison3 = {
 
 /*
 
-    We must remember that a unique execution context object is created every time a
-    function is called. After the function completes, the execution object is immediately
-    discarded unless the caller retains a reference to it. If a function returns a number, you
-    can’t  typically  retain  a  reference  to  a  function’s  execution  context  object.  On  the
-    other hand, if a function returns a more complex structure like a function, an object,
-    or  an  array,  creating  a  reference  to  the  execution  context  is  often  accomplished—
-    sometimes mistakenly—by storing the return value to a variable.
+   
  
  */
 

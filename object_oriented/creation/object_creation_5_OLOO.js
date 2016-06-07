@@ -4,6 +4,7 @@
 /*
 	What I argue OLOO offers is that it's much simpler to just express the objects 
 	and directly link them, than to indirectly link them through the constructor/new mechanisms. 
+    
     The latter pretends to be about classes but really is just a terrible syntax 
     for expressing delegation
 
