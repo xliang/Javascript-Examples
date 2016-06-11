@@ -35,15 +35,3 @@ console.log(simpleguid_1.getNext());
 console.log(simpleguid_1.getNext());
 console.log(simpleguid_1.getNext());
 
-// variant to pass name space and pass as parameter
-
-(function (simpleguid) {
-
-	// the code is here ... 
-
-})(window.simpleguid = window.simpleguid || { }) 
-
-// test whether the Module is already defined;  in case it is not, it initialize it to an empty object literal
-// and assigne to the global object (window). In any case, the simpleguid parameter in the first line 
-// of the IIFE will hold the Module's Namespace
-

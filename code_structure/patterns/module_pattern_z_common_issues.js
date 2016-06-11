@@ -41,7 +41,6 @@ That's why you see the old value.
 */
 
 
-
 var Test2 = function() {
     var counter= 0;
 

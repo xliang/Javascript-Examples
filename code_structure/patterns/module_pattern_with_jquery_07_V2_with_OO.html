@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Template</title>
+        <script src="http://cdn.kendostatic.com/2016.1.412/js/jquery.min.js"></script>
+    
+
+    <style type="text/css">
+     *{
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li{
+            list-style: none;
+        }
+
+        .wrapper{
+            width: 980px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .slider{
+            width: 500px;
+            position: relative;
+           /* margin: 0 auto;*/
+            overflow: hidden;   
+        }
+
+        .slider ul{
+            min-height: 250px;
+            position: relative;
+        }
+        .slider ul li{
+            float: left; 
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+        <div class="slider fnSlider1">
+            <ul>
+                <li>
+                    <img src="http://placehold.it/500x250&text=image1" width="500" height="250" alt="Vehicle">
+                </li>
+                <li>
+                    <img src="http://placehold.it/500x250&text=image2" width="500" height="250" alt="Vehicle">
+                </li>
+                <li>
+                    <img src="http://placehold.it/500x250&text=image3" width="500" height="250" alt="Vehicle">
+                </li>
+                <li>
+                    <img src="http://placehold.it/500x250&text=image4" width="500" height="250" alt="Vehicle">
+                </li>
+            </ul>
+            <div class="navigator">
+                <a href="#" class="prev">Prev</a>
+                <a href="#" class="next">Next</a>
+            </div>
+        </div><br/>
+
+        <div class="slider fnSlider2 fnSlider25">
+            <ul>
+                <li>
+                    <img src="http://placehold.it/500x250&text=image1" width="500" height="250" alt="Vehicle">
+                </li>
+                <li>
+                    <img src="http://placehold.it/500x250&text=image2" width="500" height="250" alt="Vehicle">
+                </li>
+                <li>
+                    <img src="http://placehold.it/500x250&text=image3" width="500" height="250" alt="Vehicle">
+                </li>
+                <li>
+                    <img src="http://placehold.it/500x250&text=image4" width="500" height="250" alt="Vehicle">
+                </li>
+            </ul>
+            <div class="navigator">
+                <a href="#" class="prev">Prev</a>
+                <a href="#" class="next">Next</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        var Slider = window.Slider = window.Slider || {};
+
+        // var Slider = (function($){
+
+            function slider(className){  // <- 'foo' is an example of a constructor argument 
+                                         // (1 and 12 below when the instances are created)                 
+                
+                //this.obj = {};
+
+                this.reelWrap = $(className);
+                this.reel = this.reelWrap.children('ul');
+                this.slide = this.reel.children('li');
+                this.slideWidth = this.slide.width();
+                this.numSlides = this.slide.length;              
+                this.reelWidth = this.numSlides * this.slideWidth;
+                this.prev = this.reelWrap.find('.prev');
+                this.next = this.reelWrap.find('.next');
+
+                 // this.obj = {
+                 //    "reelWrap" : $reelWrap,
+                 //    "reel" : $reel,
+                 // }
+
+                 this.init();
+
+            }
+
+            slider.prototype.init = function() {
+                this.pageLoad();
+                this.nextSlide();
+                this.prevSlide();
+            }
+
+            slider.prototype.pageLoad = function() {
+                var index = 2; 
+                    
+                this.reel.css('width', this.reelWidth);
+                this.slide.eq(index).addClass('fnActive');     
+                this.reel.css('left', -(index*this.slideWidth));
+            }
+
+            slider.prototype.nextSlide = function() {
+                var me = this;
+
+                this.next.click(function(e){
+                    e.preventDefault();
+                     
+                    var index = me.reel.children('.fnActive').index() + 1;
+                    var scroll = index * me.slideWidth;
+
+                    if(index < me.numSlides){
+                        me.reel.animate({left: -(scroll)}).children().removeClass('fnActive');
+                        me.slide.eq(index).addClass('fnActive');
+                    }else{
+                       me.reel.animate({left: 0}).children().removeClass('fnActive'); 
+                       me.slide.eq(0).addClass('fnActive');
+                    }
+
+                });
+            }
+
+            slider.prototype.prevSlide = function() {
+                var me = this;
+
+                 me.prev.click(function(e){
+                     e.preventDefault();
+
+                     var index = me.reel.children('.fnActive').index() - 1;
+                     var scroll = index * me.slideWidth;
+                     var lastScroll = (me.numSlides-1) * me.slideWidth;
+
+                     if(index == "-1"){
+                          me.reel.animate({left: -(lastScroll)}).children().removeClass('fnActive');
+                          me.slide.eq(-1).addClass('fnActive');
+                     }else{
+                         me.reel.animate({left: -(scroll)}).children().removeClass('fnActive');
+                         me.slide.eq(index).addClass('fnActive');  
+                     }
+                     
+                 });   
+            }
+
+         //   return slider;
+
+        // })(jQuery);
+        
+
+        var slider1 = new slider('.fnSlider1');
+        var slider2 = new slider('.fnSlider2');
+
+
+        //slider1.init(); 
+       // slider2.init(); 
+        
+      // console.log(slider1);
+
+        slider1.nextSlide = function() {
+            alert(1);
+        }
+
+        slider.prototype.sayHello = function() {
+            console.log("sayHello");
+        }
+
+       // slider1.init(); 
+        //slider2.init(); 
+
+        slider1.sayHello();
+        slider2.sayHello();
+        slider1.nextSlide();
+
+
+        
+    });
+</script>

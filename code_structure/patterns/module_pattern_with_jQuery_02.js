@@ -1,6 +1,7 @@
 // module pattern referencing jQuery
 
 var setupValidate = (function () { 
+    
     return function(options) {
           var defaultOptions = {
                qtipOptions : {
@@ -20,7 +21,9 @@ var setupValidate = (function () {
                invalidFormSelector : 'div.invalid_form',
 
          };
+         
          options = $.extend(defaultOptions,options);
+         
          $.validator.addMethod("checkPhoneNumber", function (value, element) {
 
             if (!value) return true;
@@ -40,6 +43,7 @@ var setupValidate = (function () {
                 $(this).closest('.wrap_input').removeClass('error');
             }
         });
+        
         updateQTip();
     }
 
@@ -48,6 +52,7 @@ var setupValidate = (function () {
     }
 
     validateForm();
+    
     console.log('init ok');
     
   }

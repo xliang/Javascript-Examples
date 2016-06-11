@@ -27,6 +27,7 @@ var module = (function () {
 
     // return module
     return module;
+    
 })();
 
 var my_module = new module();

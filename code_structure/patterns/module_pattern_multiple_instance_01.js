@@ -1,8 +1,9 @@
 // If you want to create multiple instances, 
 // I suggest that you return a constructor function in your module:
+
 var Slider = (function($){
 
-    function slider(id){  // <- 'foo' is an example of a constructor argument 
+    function slider(id) {  // <- 'foo' is an example of a constructor argument 
                           // (1 and 12 below when the instances are created)
 
         this.id = id; // <- something specific for each instance
