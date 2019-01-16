@@ -8,12 +8,14 @@ var myObj1 = new Object();
 var spa = {
 	title: "Single Page Web Application",  // attribute
 	authors: ["Mike Mikowski", "John"],    // array 
+	
 	buy_now: function() {                  // function 
 		console.log("Book is purchased");
 	}
 }
 
 console.log("---object literal---");
+
 var person = {};
 person.name = "john";
 

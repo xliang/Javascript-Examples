@@ -30,6 +30,7 @@ console.log("Result: " + myData6);
 console.log("Result: " + myData7);
 
 console.log("ToString() using null and undefined");
+
 console.log(null);
 
 var undefined_value;
@@ -39,6 +40,7 @@ console.log("ToString() using boolean. ");
 console.log(true);
 
 console.log("==== SubString Function ====");
+
 console.log("Wonderful day".substring(3, 7));
 console.log("Hamburgers".substring(3, 4));
 
