@@ -1,0 +1,1 @@
+console.log(Math.max(17, 33, 2)); 
