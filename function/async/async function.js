@@ -26,3 +26,8 @@ const foo = event.onCall (async () => {
     // do something 
 }); 
 
+// immediately invoked Async Arrow function 
+
+(async () => {
+    console.log(await asyncFunction()); 
+})(); 
