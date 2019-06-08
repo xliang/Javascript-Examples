@@ -1,5 +1,4 @@
 const spacetime = require('spacetime')
-let d = spacetime.now('Europe/Paris')
-console.log(d.dayName())
-//'Wednesday'
-d.isAsleep()
+let data_value = '12/25/1996'
+
+console.log(spacetime(data_value).format('iso')); 
