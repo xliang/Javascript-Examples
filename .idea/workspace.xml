@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63cd26f3-53b6-4675-a488-3c17d32ea0f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/node/datetime/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node/datetime/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -80,7 +80,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="133" />
     <option name="y" value="47" />
     <option name="width" value="1371" />
@@ -99,17 +99,6 @@
               <item name="Javascript-Examples" type="b2602c69:ProjectViewProjectNode" />
               <item name="Javascript-Examples" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Javascript-Examples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Javascript-Examples" type="462c0819:PsiDirectoryNode" />
-              <item name="node" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Javascript-Examples" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Javascript-Examples" type="462c0819:PsiDirectoryNode" />
-              <item name="node" type="462c0819:PsiDirectoryNode" />
-              <item name="datetime" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -117,6 +106,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -163,16 +153,16 @@
       <workItem from="1558812341980" duration="710000" />
       <workItem from="1559844030414" duration="14000" />
       <workItem from="1559959169677" duration="1685000" />
-      <workItem from="1560054416725" duration="42000" />
+      <workItem from="1560054416725" duration="688000" />
+      <workItem from="1560311690514" duration="1000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4440000" />
+    <option name="totallyTimeSpent" value="5087000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1533" height="875" extended-state="6" />
-    <editor active="true" />
+    <frame x="67" y="25" width="1533" height="875" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22781457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

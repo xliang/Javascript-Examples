@@ -17,7 +17,7 @@ var Car = { // not a constructor
         this.year   = year;        
     },
     sayCar: function() {
-        alert('I have a ' + this.year + ' ' + this.make + ' ' + this.model + '.');    
+        console.log('I have a ' + this.year + ' ' + this.make + ' ' + this.model + '.');    
     }
 };
 
